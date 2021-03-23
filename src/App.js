@@ -1,23 +1,47 @@
 import logo from './logo.svg';
 import './App.css';
+import {Switch, Route} from "react-router-dom"
+// navBar
+import NavBar from "./components/navigationTop/NavBar"
+
+//homePage
+import HomePage from "./webPages/HomePage"
+//aboutPage
+import AboutPage from "./webPages/ClosedListPage"
+//users
+import UsersPage from "./webPages/OpenListPage"
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+          {/* nav Bar */}
+          <div className="header">
+            <NavBar/>
+          </div>
+          {/* body and it's content */}
+          <div className="body">
+            <div className="sideNav"> hi </div>
+            <div className="mainContent"> 
+                <Switch>
+                    <Route path='/' exact>
+                        <HomePage/>
+                    </Route>
+                    <Route path='/about'>
+                        <AboutPage/>
+                    </Route>
+                    <Route path='/users'>
+                      <UsersPage/>
+                    </Route>
+                </Switch>
+            
+            </div>
+            <div className="filter"> bye</div>
+          </div>
+          {/* footer */}
+          <div className="footer"></div>
+      </div>
     </div>
   );
 }
