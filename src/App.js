@@ -2,15 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import {Switch, Route} from "react-router-dom"
 // navBar
-import NavBar from "./components/navigationTop/NavBar"
+ /*top*/  import NavBar from "./components/navigationTop/NavBar"
+/*right*/ import RignNavBar from "./components/navigationSide/RightNav"
 
-//homePage
-import HomePage from "./webPages/HomePage"
-//aboutPage
-import AboutPage from "./webPages/ClosedListPage"
-//users
-import UsersPage from "./webPages/OpenListPage"
-
+//Pages - Authority
+import HomePage from "./webPages/Authority/HomePage"
+import ComplaintPage from "./webPages/Authority/ComplaintPage"
+import ClosedListPage from "./webPages/Authority/ClosedListPage"
+import OpenListPage from "./webPages/Authority/OpenListPage"
+import ProgressListPage from "./webPages/Authority/ProgressListPage"
 
 function App() {
   return (
@@ -22,17 +22,21 @@ function App() {
           </div>
           {/* body and it's content */}
           <div className="body">
-            <div className="sideNav"> hi </div>
+            <div className="sideNav"> <RignNavBar/> </div>
             <div className="mainContent"> 
                 <Switch>
                     <Route path='/' exact>
                         <HomePage/>
                     </Route>
-                    <Route path='/about'>
-                        <AboutPage/>
+                    
+                    <Route path='/closedList'>
+                        <ClosedListPage/>
                     </Route>
-                    <Route path='/users'>
-                      <UsersPage/>
+                    <Route path='/openList'>
+                      <OpenListPage/>
+                    </Route>
+                    <Route path='/progressList'>
+                      <ProgressListPage/>
                     </Route>
                 </Switch>
             
