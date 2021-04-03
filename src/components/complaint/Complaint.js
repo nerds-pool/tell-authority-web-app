@@ -127,14 +127,16 @@ function Complaint(props) {
                     </CardContent>
 
                     <CardContent className={classes.details}>
-                        <Typography className={classes.heading}>{props.title} &nbsp; {props.date}</Typography>
+                        <Typography className={classes.heading}>{props.title} </Typography>
                         <Typography className={classes.caption}>{showLess ? `${desc.slice(0, 70)}...` : desc}</Typography>
                         <Typography className={classes.desc} style={{}} onClick={() => setShowLess(!showLess)}>&nbsp;View {showLess ? "More" : "Less"}</Typography>
                         <Typography className={`${classes.caption} ${classes.dept}`}>Department: {props.dept}</Typography>
+                        <Typography>Status: {props.status}</Typography>
+                        <Typography>Date: {props.date}</Typography>
+
                     </CardContent>
 
                     <CardContent className={classes.medDet}>
-                        <Typography>Status: {props.status}</Typography>
                         <img width="100" height="100" className={classes.media} src={bicyleImg} alt="" />
 
                     </CardContent>
