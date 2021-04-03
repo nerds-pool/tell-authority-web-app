@@ -1,30 +1,17 @@
 import React from 'react'
 import ReportBar from "../../components/ReportBar/ReportBar"
 import Complaint from "../../components/complaint/Complaint"
-import {Card,CardContent,Grid, Button,ButtonGroup, Typography} from "@material-ui/core"
-import {} from "@material-ui/core"
-import {makeStyles} from "@material-ui/core/styles"
-import SaveChanges from '../../components/SaveChangesModel/SaveChanges'
-const useStyles = makeStyles((theme)=>({
-  card:{
-    height:'150px', display:'flex', flexDirection:'column', marginTop: '10px',
-    backgroundColor: '#F5EBEB'
-  },
-    btn:{
-    //   height: '2px'
-    marginLeft: '90px',
-    
+import {ComplaintData } from "../../FetchData/ComplaintData"
 
-  },
-  btnst:{
-      // height: '20px'
-  }
-}));
+import { Grid, } from "@material-ui/core"
+
 function HomePage() {
-    const classes = useStyles();
+  
+
+
     return (
-        <div className="marginWIthinCOntent">
-            <h1>im in home page</h1>
+        <div>
+            
             <ReportBar/>
             <Grid 
                 container
@@ -32,17 +19,29 @@ function HomePage() {
                 justify="center"
                 alignItems="center"
             >
-                <Card className={classes.card} style={{}}>
-                    <Complaint /> 
-                      <CardContent>
-                    <ButtonGroup disableRipple className={classes.btn} >
-                            <Button variant="contained" color="primary"  className={classes.btnst}>Accept</Button>
-                            <Button variant="contained" color="secondary" className={classes.btnst}>Decline</Button>
-                        </ButtonGroup>
-                        {/* <SaveChanges/> */}
-                        </CardContent>
-                </Card>
+               {ComplaintData.map((val, key) => {
+          
+          if(val.status === "Open"){
+            return(
+            <Complaint
+              key={val.id}
+              title={val.title}
+              desc={val.description}
+              dept={val.department}
+              date={val.date}
+              status={val.status}
+              type={val.status}
+            />)
+          }
+          else{
+            return ""
+          }
+            
+        })}    
+          
+                
             </Grid>
+           
             
         </div>
     )

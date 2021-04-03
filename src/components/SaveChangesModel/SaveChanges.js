@@ -1,10 +1,13 @@
 import React from 'react'
 
-function SaveChanges({showModel, setShowModel}) {
+function SaveChanges() {
+    
+
+    
     return (
-        <>
-            {showModel? <div><h5>Model</h5></div> : null}
-        </>
+        <div>
+           
+        </div>
     )
 }
 

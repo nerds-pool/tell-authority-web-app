@@ -1,55 +1,47 @@
-import React, {useState} from 'react'
+import React from 'react'
 import ReportBar from "../../components/ReportBar/ReportBar"
 import Complaint from "../../components/complaint/Complaint"
-import {Card,CardContent,FormControlLabel, Checkbox,Grid, Button,ButtonGroup, Typography} from "@material-ui/core"
-import {} from "@material-ui/core"
-import {makeStyles} from "@material-ui/core/styles"
-import SaveChanges from '../../components/SaveChangesModel/SaveChanges'
-const useStyles = makeStyles((theme)=>({
-  card:{
-    height:'150px', display:'flex', flexDirection:'column', marginTop: '10px',
-    backgroundColor: '#F5EBEB'
-  },
-    check:{
-    // width:'200px',
-    height:'40px',
-    marginLeft: '90px',
-    display:'flex'
+import { ComplaintData } from "../../FetchData/ComplaintData"
 
-  },
-  btn:{
-    width: '170px'
-  }
- 
-}));
+import { Grid } from "@material-ui/core"
+
+
 function OpenListPage() {
-    const classes = useStyles();
-    const [showModel, setShowModel] = useState(false)
-    const openModel = () =>{
-      setShowModel(prev => !prev);
-    }
-    return (
-        <div>
-           
-           <ReportBar/>
-           <Grid 
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-            >
-                <Card className={classes.card} style={{}}>
-                    <Complaint /> 
-                      <CardContent className={classes.check} >
-                           <Button disableRipple onClick={openModel} variant="contained" color="primary" className={classes.btm}>Mark in progress</Button>
-                           <SaveChanges showModel={showModel} setShowModel={setShowModel}/>
-                        </CardContent>
-                </Card>
-            </Grid>
-           
 
-        </div>
-    )
+  return (
+    <div>
+      <ReportBar />
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+
+        {ComplaintData.map((val, key) => {
+
+          if (val.status === "Accepted") {
+            return (
+              <Complaint
+                key={key}
+                title={val.title}
+                desc={val.description}
+                dept={val.department}
+                date={val.date}
+                status={val.status}
+                type={val.status}
+                // img={val.img}
+              />)
+          }
+          else {
+            return ""
+          }
+
+        })}
+
+      </Grid>
+    </div>
+  )
 }
 
 export default OpenListPage

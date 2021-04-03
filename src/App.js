@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {Switch, Route} from "react-router-dom"
 // navBar
@@ -7,7 +6,6 @@ import {Switch, Route} from "react-router-dom"
 
 //Pages - Authority
 import HomePage from "./webPages/Authority/HomePage"
-import ComplaintPage from "./webPages/Authority/ComplaintPage"
 import ClosedListPage from "./webPages/Authority/ClosedListPage"
 import OpenListPage from "./webPages/Authority/OpenListPage"
 import ProgressListPage from "./webPages/Authority/ProgressListPage"
