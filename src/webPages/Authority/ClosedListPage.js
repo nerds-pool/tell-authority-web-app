@@ -1,26 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import ReportBar from "../../components/ReportBar/ReportBar"
-import Complaint from "../../components/complaint/Complaint"
-import { ComplaintData } from "../../FetchData/ComplaintData"
+import ReportBar from "../../components/ReportBar/ReportBar";
+import Complaint from "../../components/complaint/Complaint";
+import { ComplaintData } from "../../FetchData/ComplaintData";
 
-import { Grid } from "@material-ui/core"
-
+import { Grid } from "@material-ui/core";
 
 function ClosedListPage() {
-
   return (
-
     <div>
       <ReportBar />
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="center" alignItems="center">
         {ComplaintData.map((val, key) => {
-
           if (val.status === "Closed") {
             return (
               <Complaint
@@ -30,18 +21,16 @@ function ClosedListPage() {
                 dept={val.department}
                 date={val.date}
                 status={val.status}
-
                 type={val.status}
-              />)
+              />
+            );
+          } else {
+            return "";
           }
-          else {
-            return ""
-          }
-
         })}
       </Grid>
     </div>
-  )
+  );
 }
 
-export default ClosedListPage
+export default ClosedListPage;

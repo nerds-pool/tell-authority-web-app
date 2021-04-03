@@ -1,35 +1,30 @@
-*{
-  margin: 0 ;
-    padding: 0 ;
-  
-  
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.container{
+.container {
   height: 100vh;
   width: 100%;
   overflow: hidden;
 }
 
-.header{
+.header {
   background-color: aquamarine;
   height: 8.5%;
   width: 100%;
-  
 }
 
-.body{
-  
+.body {
   height: 82%;
   width: 100%;
   display: flex;
   overflow-y: scroll;
   overflow-x: hidden;
-  
 }
 
 /* components inside body */
-.sideNav{
+.sideNav {
   width: 15%;
   background-color: #edede8;
   height: 100%;
@@ -39,27 +34,23 @@
   /* position: absolute; */
   /* position: absolute; */
 }
-.mainContent{
+.mainContent {
   width: 65%;
   padding: 20px;
-  
+
   /* background-color: goldenrod; */
 }
 
-.ComplaintCard{
+.ComplaintCard {
   margin-top: 20px;
-  
 }
 
-.filter{
+.filter {
   width: 20%;
   background-color: lightblue;
-  
 }
 
-
-
-.footer{
+.footer {
   background-color: grey;
   height: 10%;
   width: 100%;

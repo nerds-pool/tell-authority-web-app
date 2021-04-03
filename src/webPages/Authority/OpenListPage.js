@@ -1,25 +1,17 @@
-import React from 'react'
-import ReportBar from "../../components/ReportBar/ReportBar"
-import Complaint from "../../components/complaint/Complaint"
-import { ComplaintData } from "../../FetchData/ComplaintData"
+import React from "react";
+import api from "../../api"
+import ReportBar from "../../components/ReportBar/ReportBar";
+import Complaint from "../../components/complaint/Complaint";
+import { ComplaintData } from "../../FetchData/ComplaintData";
 
-import { Grid } from "@material-ui/core"
-
+import { Grid } from "@material-ui/core";
 
 function OpenListPage() {
-
   return (
     <div>
       <ReportBar />
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-
+      <Grid container direction="row" justify="center" alignItems="center">
         {ComplaintData.map((val, key) => {
-
           if (val.status === "Accepted") {
             return (
               <Complaint
@@ -31,17 +23,15 @@ function OpenListPage() {
                 status={val.status}
                 type={val.status}
                 // img={val.img}
-              />)
+              />
+            );
+          } else {
+            return "";
           }
-          else {
-            return ""
-          }
-
         })}
-
       </Grid>
     </div>
-  )
+  );
 }
 
-export default OpenListPage
+export default OpenListPage;

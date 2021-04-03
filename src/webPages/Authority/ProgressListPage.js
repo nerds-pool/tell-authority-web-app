@@ -1,25 +1,18 @@
-import React from 'react'
-import ReportBar from "../../components/ReportBar/ReportBar"
-import Complaint from "../../components/complaint/Complaint"
+import React from "react";
+import ReportBar from "../../components/ReportBar/ReportBar";
+import Complaint from "../../components/complaint/Complaint";
 
-import { ComplaintData } from "../../FetchData/ComplaintData"
+import { ComplaintData } from "../../FetchData/ComplaintData";
 
-import { Grid } from "@material-ui/core"
+import { Grid } from "@material-ui/core";
 
 function ProgressListPage() {
-
   return (
     <div>
       <ReportBar />
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
+      <Grid container direction="row" justify="center" alignItems="center">
         {ComplaintData.map((val, key) => {
-
-          if (val.status === "Done") {
+          if (val.status === "Processing") {
             return (
               <Complaint
                 key={val.id}
@@ -29,16 +22,15 @@ function ProgressListPage() {
                 date={val.date}
                 status={val.status}
                 type={val.status}
-              />)
+              />
+            );
+          } else {
+            return "";
           }
-          else {
-            return ""
-          }
-
         })}
       </Grid>
     </div>
-  )
+  );
 }
 
-export default ProgressListPage
+export default ProgressListPage;
