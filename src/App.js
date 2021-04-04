@@ -15,36 +15,43 @@ function App() {
     <div className="App">
       <div className="container">
         {/* nav Bar */}
-        <div className="header">
-          <NavBar />
-        </div>
+            <div className="header">
+              <NavBar />
+            </div>
         {/* body and it's content */}
         <div className="body">
+          {/* sidenavbar */}
           <div className="sideNav">
-            {" "}
-            <RignNavBar />{" "}
+            <RignNavBar/>
           </div>
-          <div className="mainContent">
-            <Switch>
-              <Route path="/" exact>
-                <HomePage />
-              </Route>
+          {/* body and footer */}
+          <div className="comnfot" >
+              <div className="mainContent">
+              <Switch>
+                <Route path="/" exact>
+                  <HomePage />
+                </Route>
 
-              <Route path="/closedList">
-                <ClosedListPage />
-              </Route>
-              <Route path="/openList">
-                <OpenListPage />
-              </Route>
-              <Route path="/progressList">
-                <ProgressListPage />
-              </Route>
-            </Switch>
+                <Route path="/closedList">
+                  <ClosedListPage />
+                </Route>
+                <Route path="/openList">
+                  <OpenListPage />
+                </Route>
+                <Route path="/progressList">
+                  <ProgressListPage />
+                </Route>
+              </Switch>
+              </div>
+
+              <div className="footer">
+                 <p>this is the footer</p>
+              </div>
           </div>
+          {/* filter */}
           <div className="filter"> bye</div>
         </div>
         {/* footer */}
-        <div className="footer"></div>
       </div>
     </div>
   );

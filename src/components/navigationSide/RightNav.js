@@ -5,9 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
   container: {
-    position: "fixed",
-    height: "82%",
-    width: "15%",
+    // position: "fixed",
+    // height: "100%",
+    // width: "15%",
     backgroundColor: "#edede8",
   },
 
