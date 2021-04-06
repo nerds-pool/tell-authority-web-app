@@ -56,10 +56,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Alert(props) {
-  // State for receiving Alert Type
+  // State for receiving Alert Type [status]
   const [AlertType, setAlertType] = useState(props.Type);
   useEffect(() => setAlertType(props.Type), [props.Type]);
 
+  // State for btnType [Confirm || Reject]
   const [BtnType, setBtnType] = useState(props.btnType);
   useEffect(() => setBtnType(props.btnType), [props.btnType]);
 
@@ -189,7 +190,7 @@ function Alert(props) {
         </Dialog>
       );
 
-    if (AlertType === "Done")
+    if (AlertType === "Processing")
       return (
         <Dialog
           open={props.open}

@@ -82,4 +82,14 @@ export const ComplaintData = [
     date: "04/02/2021",
     status: "Closed",
   },
+  {
+    id: 8,
+    title: "Family Argument",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam, sunt.",
+    department: "Police",
+    date: "04/02/2021",
+    status: "Rejected",
+    rejDesc: "Fraud call"
+  },
 ];

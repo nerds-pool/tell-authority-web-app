@@ -59,6 +59,13 @@ function Complaint(props) {
           </Typography>
         );
 
+      case "Rejected":
+        return (
+          <Typography className={classes.caption}>
+            Status: <span style={{ color: "red" }}>{props.status}</span>
+          </Typography>
+        )
+
       default:
         return (
           <Typography className={classes.caption}>
@@ -67,6 +74,19 @@ function Complaint(props) {
         );
     }
   };
+
+  const rejectComment = () => {
+    if(props.rejDesc != null){
+      return(
+        <Typography className={classes.caption}>
+        Reject Comment: <span style={{ fontWeight: 'normal' }}> {props.rejDesc}</span>
+      </Typography>
+      )
+    }
+    else{
+      return "";
+    }
+  }
 
   const renderButtons = () => {
     if (!complaintType || complaintType === "Open")
@@ -181,7 +201,7 @@ function Complaint(props) {
               style={{}}
               onClick={() => setShowLess(!showLess)}
             >
-              &nbsp;View {showLess ? "More" : "Less"}
+              View {showLess ? "More" : "Less"}
             </Typography>
             <Typography className={classes.caption}>
               Department: <span className={classes.dept}> {props.dept}</span>
@@ -190,6 +210,8 @@ function Complaint(props) {
             <Typography className={classes.caption}>
               Date: {props.date}
             </Typography>
+            {rejectComment()}
+
           </CardContent>
 
           <CardContent className={classes.medDet}></CardContent>
@@ -249,7 +271,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   dept: {
-    color: "red",
+    // color: "red",
+    textDecoration: 'underline'
   },
 
   media: {

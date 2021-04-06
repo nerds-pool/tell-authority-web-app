@@ -47,42 +47,25 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-function RightNav() {
+function SideNav
+  () {
   const classes = useStyle();
   return (
     <div className={classes.container}>
       {/* <Typography className={classes.tabName} variant="h4"> </Typography> */}
       <CardContent className={classes.links}>
-        <Typography className={classes.link} component={Link} to="/">
-          Dashboard
-        </Typography>
-        <Typography className={classes.link} style={{ textDecoration: "none" }}>
-          Complaints
-        </Typography>
-        <Typography
-          className={`${classes.link} ${classes.list}`}
-          component={Link}
-          to="/openList"
-        >
-          Accepted List
-        </Typography>
-        <Typography
-          className={`${classes.link} ${classes.list}`}
-          component={Link}
-          to="/progressList"
-        >
-          Progress List
-        </Typography>
-        <Typography
-          className={`${classes.link} ${classes.list}`}
-          component={Link}
-          to="/closedList"
-        >
-          Closed List
-        </Typography>
+
+        <Typography className={classes.link} component={Link} to="/">Dashboard</Typography>
+        <Typography className={classes.link} style={{ textDecoration: "none" }}>Complaints</Typography>
+        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/openList">Open List</Typography>
+        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/progressList">Progress List</Typography>
+        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/closedList">Closed List</Typography>
+        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/rejectedList">Rejected List</Typography>
+
       </CardContent>
     </div>
   );
 }
 
-export default RightNav;
+export default SideNav
+  ;
