@@ -17,13 +17,17 @@ function NavBar() {
           </div>
 
           <div className={classes.menu}>
-            <Button disableRipple component={Link} to="/">
-              Home
-            </Button>
-            <Button disableRipple>Help</Button>
-            <Button disableRipple>Profile</Button>
+          <Link to="/">
+              <Button disableRipple>Home</Button>
+            </Link>
+            <Link to="/help">
+              <Button disableRipple>Help</Button>
+            </Link>
+            <Link to="/profile">
+              <Button disableRipple>Profile</Button>
+            </Link>
             <Button disableRipple color="inherit">
-              Login
+              Sign Out
             </Button>
           </div>
         </Toolbar>

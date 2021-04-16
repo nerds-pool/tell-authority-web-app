@@ -1,4 +1,5 @@
-import { Typography, CardContent } from "@material-ui/core";
+import { Typography, CardContent, InputLabel } from "@material-ui/core";
+import { Explore } from "@material-ui/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,13 +11,14 @@ const useStyle = makeStyles((theme) => ({
     // width: "15%",
     backgroundColor: "#edede8",
   },
-
+  heading: {
+    width: "80%",
+  },
   links: {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    paddingTop: "50px",
-    alignItems: "center",
+    marginTop: theme.spacing(5),
   },
   link: {
     textDecoration: "none",
@@ -54,7 +56,14 @@ function SideNav
     <div className={classes.container}>
       {/* <Typography className={classes.tabName} variant="h4"> </Typography> */}
       <CardContent className={classes.links}>
-
+      <div className={classes.heading}>
+          <InputLabel>
+            <h2>
+              <Explore />
+              &nbsp;Menu
+            </h2>
+          </InputLabel>
+        </div>
         <Typography className={classes.link} component={Link} to="/">Dashboard</Typography>
         <Typography className={classes.link} style={{ textDecoration: "none" }}>Complaints</Typography>
         <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/openList">Open List</Typography>

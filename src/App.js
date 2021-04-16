@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 // navBar
 /*top*/ import NavBar from "./components/navigationTop/NavBar";
 /*right*/ import SideNavBar from "./components/navigationSide/SideNav";
+/*filter*/ import CategoryFilter from "./components/navigationSide/CategoryFilter";
+/*footer*/ import Footer from "./components/Footer/Footer";
 
 //Pages - Authority
 import HomePage from "./webPages/Authority/HomePage";
@@ -10,6 +12,9 @@ import ClosedListPage from "./webPages/Authority/ClosedListPage";
 import OpenListPage from "./webPages/Authority/OpenListPage";
 import ProgressListPage from "./webPages/Authority/ProgressListPage";
 import RejectedListPage from "./webPages/Authority/RejectedListPage";
+import HelpPage from "./webPages/Authority/HelpPage";
+// import LoginPage from "./webPages/Authority/LoginPage";
+import ProfilePage from "./webPages/Authority/ProfilePage";
 
 function App() {
   return (
@@ -44,16 +49,27 @@ function App() {
                 <Route path="/rejectedList">
                   <RejectedListPage />
                 </Route>
+                <Route path="/help">
+                  <HelpPage />
+                </Route>
+                <Route path="/login">
+                  {/* <LoginPage /> */}
+                </Route>
+                <Route path="/profile">
+                  <ProfilePage />
+                </Route>
               </Switch>
             </div>
             {/* footer */}
             <div className="footer">
-              <p>this is the footer</p>
+              <Footer/>
             </div>
 
           </div>
           {/* filter */}
-          <div className="filter"> bye</div>
+          <div className="filter">
+            <CategoryFilter />
+          </div>
         </div>
       </div>
     </div>
