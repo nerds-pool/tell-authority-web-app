@@ -1,14 +1,11 @@
-import { Typography, CardContent, InputLabel } from "@material-ui/core";
-import { Explore } from "@material-ui/icons";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Typography, CardContent, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Explore } from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
   container: {
-    // position: "fixed",
-    // height: "100%",
-    // width: "15%",
     backgroundColor: "#edede8",
   },
   heading: {
@@ -25,11 +22,9 @@ const useStyle = makeStyles((theme) => ({
     textDecoration: "none",
     width: "100%",
     color: "black",
-    // margin: "8px",
     paddingTop: "10px",
 
     fontWeight: "bold",
-    // width:'100%',
     "&:hover": {
       textDecoration: "underline 2px solid #8E0D37",
       borderRadius: "5px",
@@ -50,11 +45,10 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-function SideNav() {
+const SideNav = () => {
   const classes = useStyle();
   return (
     <div className={classes.container}>
-      {/* <Typography className={classes.tabName} variant="h4"> </Typography> */}
       <CardContent className={classes.links}>
         <div className={classes.heading}>
           <InputLabel>
@@ -101,6 +95,6 @@ function SideNav() {
       </CardContent>
     </div>
   );
-}
+};
 
 export default SideNav;

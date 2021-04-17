@@ -8,13 +8,8 @@ import {
   DialogTitle,
   TextField,
 } from "@material-ui/core";
-
-// import icons
 import { HelpOutline } from "@material-ui/icons";
-
-// import makeStyles
 import { makeStyles } from "@material-ui/core/styles";
-// import custom COLOR library
 import { COLOR } from "../../theme/Color";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     flexWrap: "wrap",
-    // height: '100vh'
   },
   IconCon: {
     alignSelf: "center",
@@ -57,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Alert(props) {
   const [reason, setReason] = useState("");
+
   // State for receiving Alert Type [status]
   const [AlertType, setAlertType] = useState(props.Type);
   useEffect(() => setAlertType(props.Type), [props.Type]);
@@ -108,7 +103,7 @@ function Alert(props) {
 
     if (AlertType === "open" && BtnType === "Reject")
       return (
-        // Click Accept
+        // Click Reject
         <Dialog
           open={props.open}
           onClose={props.onClose}

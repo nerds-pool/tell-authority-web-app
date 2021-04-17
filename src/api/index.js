@@ -48,8 +48,6 @@ const api = {
   },
   get: {
     allComplaints: (authorityId) => Http.get(`/user/${authorityId}`),
-    complaintsByCategory: (categoryId) => Http.get(`/get/cat/${categoryId}`),
-    complaintsByDistrict: (district) => Http.get(`/get/all/${district}`),
     complaintsByFilter: (status, category, authority, date) =>
       Http.get(
         `/complaints/get/authority?stat=${status}&cat=${category}&auth=${authority}&date=${date}`
@@ -58,14 +56,12 @@ const api = {
     filterData: () => Http.get("/complaints/meta"),
     report: () => Http.get("/complaints/report"),
   },
-  put: {},
   patch: {
     updateComplaintStatus: (body) =>
       Http.patch("/complaints/update/status", body),
     commentComplaint: () => Http.patch(`/update/comment`),
     resetPassword: (body) => Http.patch("/auth/pro/reset-password", body),
   },
-  delete: {},
 };
 
 export default api;

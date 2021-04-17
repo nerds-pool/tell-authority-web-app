@@ -1,32 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import CallIcon from "@material-ui/icons/Call";
-import EmailIcon from "@material-ui/icons/Email";
-import RoomIcon from "@material-ui/icons/Room";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import {
+  Call as CallIcon,
+  Email as EmailIcon,
+  Room as RoomIcon,
+  Facebook as FacebookIcon,
+  LinkedIn as LinkedInIcon,
+  GitHub as GitHubIcon,
+} from "@material-ui/icons";
+import { COLOR } from "../../theme/Color";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   Typography: {
-    color: "#e8e8e4",
+    color: COLOR.whiteSmoke,
   },
   link: {
     textDecoration: "none",
-    color: "#e8e8e4",
+    color: COLOR.whiteSmoke,
     "&:hover": {
-      color: "#ff0000",
+      color: COLOR.navCol,
     },
   },
 }));
 
-function Footer() {
+const Footer = () => {
   const classes = useStyles();
 
   return (
@@ -137,6 +139,6 @@ function Footer() {
       </Grid>
     </div>
   );
-}
+};
 
 export default Footer;

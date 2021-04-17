@@ -7,7 +7,86 @@ import bicyleImg from "./Bicycle.png";
 import api from "../../api";
 import { GlobalContext } from "../../context";
 import { COLOR } from "../../theme/Color";
-// import { COLOR } from "../../theme/Color";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: "20px",
+    width: "100%",
+    padding: "0",
+    backgroundColor: COLOR.complaintBackground,
+  },
+  content: {
+    display: "flex",
+    margin: "0",
+    padding: "0",
+  },
+  userPref: {
+    display: "flex",
+    flexDirection: "column",
+    width: "10%",
+  },
+  upvotes: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "1.5px",
+  },
+  details: {
+    width: "90%",
+  },
+  heading: {
+    marginBottom: "10px",
+  },
+  caption: {
+    fontSize: "14px",
+    fontWeight: "bold",
+  },
+  complaintIdText: {
+    fontSize: "18px",
+    marginBottom: 5,
+  },
+  desc: {
+    cursor: "pointer",
+    color: "blue",
+    marginBottom: "10px",
+  },
+  dept: {
+    textDecoration: "underline",
+  },
+
+  media: {
+    minHeight: "160px",
+    maxHeight: "300px",
+    maxWidth: "300px",
+    minWidth: "160px",
+    marginBottom: "10px",
+  },
+  check: {
+    width: "100%",
+    display: "flex",
+    paddingLeft: "11%",
+    marginBottom: "0",
+  },
+  btn: {
+    marginBottom: 10,
+    height: 30,
+    marginRight: 10,
+    backgroundColor: COLOR.navCol,
+    color: "white",
+    "&:hover": {
+      backgroundColor: "white",
+      color: COLOR.navCol,
+    },
+  },
+  oddBtn: {
+    backgroundColor: COLOR.redColour,
+    color: "white",
+    "&:hover": {
+      backgroundColor: "white",
+      color: COLOR.redColour,
+    },
+  },
+}));
 
 const Complaint = ({
   id,
@@ -26,32 +105,30 @@ const Complaint = ({
   reason = null,
   onUpdate = null,
 }) => {
+  const classes = useStyles();
   const { userState } = useContext(GlobalContext);
   const [complaintType, setComplaintType] = useState(status); // render button according to the status
   const [showLess, setShowLess] = useState(true);
   const [Open, setOpen] = useState(false);
-  // State for open and closenDialog
-  const [OpenReject, setOpenReject] = useState(false);
+  const [OpenReject, setOpenReject] = useState(false); // State for open and closenDialog
 
   useEffect(() => {
     setComplaintType(status);
   }, [status]);
 
-  console.log(media);
-
   const handleOpenAlert = (e) => {
     e.preventDefault();
     setOpen(true);
   };
+
   const handleCloseAlert = () => {
     setOpen(false);
   };
 
-  // OpenReject Dialog
   const handleOpenRejectAlert = () => {
     setOpenReject(true);
   };
-  // Close Dialog
+
   const handleCloseRejectAlert = () => {
     setOpenReject(false);
   };
@@ -146,7 +223,7 @@ const Complaint = ({
       return (
         <Typography className={classes.caption}>
           {"Reject Comment: "}
-          <span style={{ fontWeight: "normal" }}> {reason}</span>
+          <span style={{ fontWeight: "normal" }}>{reason}</span>
         </Typography>
       );
     } else {
@@ -243,13 +320,11 @@ const Complaint = ({
     if (complaintType === "closed" || complaintType === "rejected") return null;
   };
 
-  const classes = useStyles();
   return (
     <div>
       <Card className={classes.container}>
         <CardContent className={classes.content}>
           <CardContent className={classes.userPref}>
-            {/* <Button>User</Button> */}
             <CardContent className={classes.upvotes}>
               <ArrowDropUp fontSize="large" />
               <Typography>{votes.length ?? 0}</Typography>
@@ -312,89 +387,3 @@ const Complaint = ({
 };
 
 export default Complaint;
-
-// styles
-const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: "20px",
-    width: "100%",
-    // height: "100%",
-    padding: "0",
-    backgroundColor: "#F5EBEB",
-    // minWidth: "490px",
-  },
-  content: {
-    display: "flex",
-    // height: "100%",
-    margin: "0",
-    padding: "0",
-  },
-  userPref: {
-    display: "flex",
-    flexDirection: "column",
-    width: "10%",
-  },
-  upvotes: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "1.5px",
-  },
-  details: {
-    width: "90%",
-  },
-  heading: {
-    marginBottom: "10px",
-  },
-  caption: {
-    fontSize: "14px",
-    fontWeight: "bold",
-  },
-  complaintIdText: {
-    fontSize: "18px",
-    marginBottom: 5,
-  },
-  desc: {
-    cursor: "pointer",
-    color: "blue",
-    marginBottom: "10px",
-  },
-  dept: {
-    textDecoration: "underline",
-  },
-
-  media: {
-    minHeight: "160px",
-    maxHeight: "300px",
-    maxWidth: "300px",
-    minWidth: "160px",
-    marginBottom: "10px",
-  },
-  check: {
-    width: "100%",
-    // height: "40px",
-    // marginLeft: "110px",
-    display: "flex",
-    paddingLeft: "11%",
-    marginBottom: "0",
-  },
-  btn: {
-    marginBottom: 10,
-    height: 30,
-    marginRight: 10,
-    backgroundColor: COLOR.navCol,
-    color: "white",
-    "&:hover": {
-      backgroundColor: "white",
-      color: COLOR.navCol,
-    },
-  },
-  oddBtn: {
-    backgroundColor: COLOR.redColour,
-    color: "white",
-    "&:hover": {
-      backgroundColor: "white",
-      color: COLOR.redColour,
-    },
-  },
-}));

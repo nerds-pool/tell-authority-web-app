@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
     height: "100px",
-    // border: `2px solid ${COLOR.redColour}`,
     justifyContent: "space-evenly",
     alignItems: "center",
     boxShadow: "2.5px 2.5px 2.5px 2.5px   rgba(0, 0, 0, .2)",
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ReportBar({ total = 0, pending = 0, solved = 0 }) {
+const ReportBar = ({ total = 0, pending = 0, solved = 0 }) => {
   const classes = useStyles();
   return (
     <div>
@@ -46,6 +45,6 @@ function ReportBar({ total = 0, pending = 0, solved = 0 }) {
       </Grid>
     </div>
   );
-}
+};
 
 export default ReportBar;

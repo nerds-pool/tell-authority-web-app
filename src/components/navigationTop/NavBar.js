@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
-import {
-  Home,
-  AccountCircle,
-  Help,
-  ExitToApp,
-} from "@material-ui/icons";
+import { Home, AccountCircle, Help, ExitToApp } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { COLOR } from "../../theme/Color";
 import { GlobalContext } from "../../context";
@@ -34,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-function NavBar() {
+
+const NavBar = () => {
   const classes = useStyles();
   const { dispatchUser } = useContext(GlobalContext);
 
@@ -85,6 +81,6 @@ function NavBar() {
       </AppBar>
     </div>
   );
-}
+};
 
 export default NavBar;

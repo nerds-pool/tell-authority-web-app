@@ -1,6 +1,5 @@
 import {
   UPDATE_CATEGORY,
-  UPDATE_AUTHORITY,
   UPDATE_DATE,
   RESET_FILTER,
 } from "../actions/action.types";
