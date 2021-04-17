@@ -52,7 +52,7 @@ const RejectedListAdmin = () => {
         setLoading(false);
       }
     })();
-  }, [filterState]);
+  }, [filterState, userState]);
 
   if (loading)
     return (

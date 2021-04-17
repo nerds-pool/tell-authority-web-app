@@ -52,7 +52,7 @@ function ClosedListPageAdmin() {
         setLoading(false);
       }
     })();
-  }, [filterState]);
+  }, [filterState, userState]);
 
   if (loading)
     return (

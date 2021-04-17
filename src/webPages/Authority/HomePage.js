@@ -30,9 +30,14 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePageAdmin() {
   const classes = useStyles();
+  const [cycle, setCycle] = useState(0);
   const { filterState, userState } = useContext(GlobalContext);
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleUpdate = () => {
+    setCycle((prevState) => prevState + 1);
+  };
 
   useEffect(() => {
     (async () => {
@@ -52,7 +57,7 @@ function HomePageAdmin() {
         setLoading(false);
       }
     })();
-  }, [filterState]);
+  }, [filterState, userState, cycle]);
 
   if (loading)
     return (
@@ -93,6 +98,7 @@ function HomePageAdmin() {
                 }/${new Date(val.createdAt).getFullYear()}`}
                 authority={val.authority}
                 category={val.category}
+                onUpdate={handleUpdate}
               />
             ) : null
           )}

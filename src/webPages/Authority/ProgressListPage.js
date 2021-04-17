@@ -54,7 +54,7 @@ function ProgressListPageAdmin() {
         setLoading(false);
       }
     })();
-  }, [filterState, cycle]);
+  }, [filterState, cycle, userState]);
 
   const handleUpdate = () => {
     setCycle((prevState) => prevState + 1);

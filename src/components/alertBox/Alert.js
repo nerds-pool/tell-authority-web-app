@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Alert(props) {
+  const [reason, setReason] = useState("");
   // State for receiving Alert Type [status]
   const [AlertType, setAlertType] = useState(props.Type);
   useEffect(() => setAlertType(props.Type), [props.Type]);
@@ -81,14 +82,14 @@ function Alert(props) {
               <HelpOutline className={classes.Icon} />
             </DialogContent>
             <DialogTitle id="form-dialog-title">
-              Confirm your request!
+              Do you want to ACCEPT the complaint?
             </DialogTitle>
             <DialogContentText>{`Complaint: ${props.title}`}</DialogContentText>
 
             <DialogActions className={classes.buttons}>
               <Button
                 fullWidth
-                onClick={props.onClose}
+                onClick={props.onConfirm}
                 className={classes.confirm}
               >
                 Confirm
@@ -119,24 +120,25 @@ function Alert(props) {
               <HelpOutline className={classes.Icon} />
             </DialogContent>
             <DialogTitle id="form-dialog-title">
-              Confirm your request!
+              Do you want to REJECT the complaint?
             </DialogTitle>
             <DialogContentText>{`Complaint: ${props.title}`}</DialogContentText>
             <DialogContent>
               <TextField
-                id="outlined-multiline-static"
-                label="Write the Reason to Reject Complaint"
+                id="reason"
+                label="Reason to Reject"
                 multiline
                 rows={2}
-                color="secondary"
                 variant="outlined"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
                 required
               />
             </DialogContent>
             <DialogActions className={classes.buttons}>
               <Button
                 fullWidth
-                onClick={props.onClose}
+                onClick={(e) => props.onConfirm(e, reason)}
                 className={classes.confirm}
               >
                 Confirm
@@ -166,14 +168,14 @@ function Alert(props) {
               <HelpOutline className={classes.Icon} />
             </DialogContent>
             <DialogTitle id="form-dialog-title">
-              Confirm your request!
+              Do you want to mark this complaint as processing?
             </DialogTitle>
             <DialogContentText>{`Complaint: ${props.title}`}</DialogContentText>
 
             <DialogActions className={classes.buttons}>
               <Button
                 fullWidth
-                onClick={props.onClose}
+                onClick={props.onConfirm}
                 className={classes.confirm}
               >
                 Confirm
@@ -203,14 +205,14 @@ function Alert(props) {
               <HelpOutline className={classes.Icon} />
             </DialogContent>
             <DialogTitle id="form-dialog-title">
-              Confirm your request!
+              Do you want to ask for COFIRMATION?
             </DialogTitle>
             <DialogContentText>{`Complaint: ${props.title}`}</DialogContentText>
 
             <DialogActions className={classes.buttons}>
               <Button
                 fullWidth
-                onClick={props.onClose}
+                onClick={props.onConfirm}
                 className={classes.confirm}
               >
                 Confirm

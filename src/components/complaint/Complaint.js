@@ -6,6 +6,7 @@ import Alert from "../alertBox/Alert";
 import bicyleImg from "./Bicycle.png";
 import api from "../../api";
 import { GlobalContext } from "../../context";
+import { COLOR } from "../../theme/Color";
 // import { COLOR } from "../../theme/Color";
 
 const Complaint = ({
@@ -55,14 +56,43 @@ const Complaint = ({
     setOpenReject(false);
   };
 
-  const handleConfirmAlert = async () => {
-    console.log("Confirmed job", id);
+  const handleConfirm = async (e, reason = "None") => {
+    console.log("Confirmed job", { id, title, reason });
+    try {
+      let complaintState;
+
+      if (status === "open") complaintState = "accepted";
+      if (status === "accepted") complaintState = "processing";
+      if (status === "processing") complaintState = "closed";
+
+      const body = {
+        userId: userState.data.id,
+        complaintId: id,
+        reason,
+        complaintState,
+      };
+      const response = await api.patch.complaintStatusAsDone(body);
+      console.dir(response.data.result);
+      onUpdate();
+    } catch (error) {
+      console.log(
+        "Error at complaint mark done",
+        error.response ?? error.message
+      );
+    } finally {
+      handleCloseAlert();
+    }
+  };
+
+  const handleReject = async (e, reason = "Not specified") => {
+    if (status !== "open") return;
+    console.log("Rejected job", { id, title, reason });
     try {
       const body = {
         userId: userState.data.id,
         complaintId: id,
-        reason: "none",
-        complaintState: "closed",
+        reason,
+        complaintState: "rejected",
       };
       const response = await api.patch.complaintStatusAsDone(body);
       console.dir(response.data.result);
@@ -82,28 +112,29 @@ const Complaint = ({
       case "accepted":
         return (
           <Typography className={classes.caption}>
-            Status:{" "}
+            {"Status: "}
             <span style={{ color: "#678d58" }}>{status.toUpperCase()}</span>
           </Typography>
         );
       case "processing":
         return (
           <Typography className={classes.caption}>
-            Status:{" "}
+            {"Status: "}
             <span style={{ color: "#0077b6" }}>{status.toUpperCase()}</span>
           </Typography>
         );
       case "rejected":
         return (
           <Typography className={classes.caption}>
-            Status: <span style={{ color: "red" }}>{status.toUpperCase()}</span>
+            {"Status:"}{" "}
+            <span style={{ color: "red" }}>{status.toUpperCase()}</span>
           </Typography>
         );
 
       default:
         return (
           <Typography className={classes.caption}>
-            Status:{" "}
+            {" Status: "}
             <span style={{ color: "#7d8597" }}>{status.toUpperCase()}</span>
           </Typography>
         );
@@ -131,7 +162,6 @@ const Complaint = ({
           <Button
             disableRipple
             variant="contained"
-            color="primary"
             className={classes.btn}
             onClick={handleOpenAlert}
           >
@@ -140,8 +170,9 @@ const Complaint = ({
           <Alert
             open={Open}
             onClose={handleCloseAlert}
-            Type={status}
-            btnType={"Confirm"}
+            onConfirm={handleConfirm}
+            Type="open"
+            btnType="Confirm"
             title={title}
           />
 
@@ -149,8 +180,7 @@ const Complaint = ({
           <Button
             disableRipple
             variant="contained"
-            color="secondary"
-            className={classes.btn}
+            className={[classes.btn, classes.oddBtn]}
             onClick={handleOpenRejectAlert}
           >
             Reject
@@ -158,8 +188,9 @@ const Complaint = ({
           <Alert
             open={OpenReject}
             onClose={handleCloseRejectAlert}
-            Type={status}
-            btnType={"Reject"}
+            onConfirm={handleReject}
+            Type="open"
+            btnType="Reject"
             title={title}
           />
         </React.Fragment>
@@ -175,18 +206,19 @@ const Complaint = ({
             className={classes.btn}
             onClick={handleOpenAlert}
           >
-            Mark in progress
+            Mark as Processing
           </Button>
           <Alert
             open={Open}
             onClose={handleCloseAlert}
-            Type={status}
+            onConfirm={handleConfirm}
+            Type="accepted"
             title={title}
           />
         </React.Fragment>
       );
 
-    if (complaintType === "Processing")
+    if (complaintType === "processing")
       return (
         <React.Fragment>
           <Button
@@ -194,20 +226,21 @@ const Complaint = ({
             variant="contained"
             color="secondary"
             className={classes.btn}
-            onClick={OpenHandle}
+            onClick={handleOpenAlert}
           >
             Ask to confirm
           </Button>
           <Alert
             open={Open}
-            onClose={CloseHandle}
-            Type={props.status}
-            title={props.title}
+            onClose={handleCloseAlert}
+            onConfirm={handleConfirm}
+            Type="processing"
+            title={title}
           />
         </React.Fragment>
       );
 
-    if (complaintType === "Closed") return null;
+    if (complaintType === "closed" || complaintType === "rejected") return null;
   };
 
   const classes = useStyles();
@@ -235,6 +268,13 @@ const Complaint = ({
             /> */}
             <Typography>
               {showLess ? `${content.slice(0, 70)}...` : content}
+            </Typography>
+            <Typography
+              className={classes.desc}
+              style={{}}
+              onClick={() => setShowLess(!showLess)}
+            >
+              View {showLess ? "More" : "Less"}
             </Typography>
             <Typography
               className={classes.caption}
@@ -334,5 +374,20 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     marginBottom: 10,
     height: 30,
+    marginRight: 10,
+    backgroundColor: COLOR.navCol,
+    color: "white",
+    "&:hover": {
+      backgroundColor: "white",
+      color: COLOR.navCol,
+    },
+  },
+  oddBtn: {
+    backgroundColor: COLOR.redColour,
+    color: "white",
+    "&:hover": {
+      backgroundColor: "white",
+      color: COLOR.redColour,
+    },
   },
 }));
