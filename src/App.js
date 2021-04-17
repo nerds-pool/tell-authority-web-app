@@ -6,6 +6,9 @@ import { Switch, Route } from "react-router-dom";
 /*filter*/ import CategoryFilter from "./components/navigationSide/CategoryFilter";
 /*footer*/ import Footer from "./components/Footer/Footer";
 
+//Report bar
+import ReportBar from "./components/ReportBar/ReportBar"
+
 //Pages - Authority
 import HomePage from "./webPages/Authority/HomePage";
 import ClosedListPage from "./webPages/Authority/ClosedListPage";
@@ -13,7 +16,7 @@ import OpenListPage from "./webPages/Authority/OpenListPage";
 import ProgressListPage from "./webPages/Authority/ProgressListPage";
 import RejectedListPage from "./webPages/Authority/RejectedListPage";
 import HelpPage from "./webPages/Authority/HelpPage";
-// import LoginPage from "./webPages/Authority/LoginPage";
+import LoginPage from "./webPages/Authority/LoginPage";
 import ProfilePage from "./webPages/Authority/ProfilePage";
 
 function App() {
@@ -33,6 +36,7 @@ function App() {
           <div className="comnfot" >
             {/* load web page content */}
             <div className="mainContent">
+              <ReportBar/>
               <Switch>
                 <Route path="/" exact>
                   <HomePage />
@@ -53,7 +57,7 @@ function App() {
                   <HelpPage />
                 </Route>
                 <Route path="/login">
-                  {/* <LoginPage /> */}
+                  <LoginPage />
                 </Route>
                 <Route path="/profile">
                   <ProfilePage />

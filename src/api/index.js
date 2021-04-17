@@ -47,10 +47,17 @@ const api = {
     signin: async (body) => await Http.post("/", body),
   },
   get: {
-    allComplaints: async (userId) => await Http.get(`/user/${userId}`),
+    allComplaints: async (authorityId) => await Http.get(`/user/${authorityId}`),
+    complaintsByCategory: async (categoryId) => await Http.get(`/get/cat/${categoryId}`),
+    complaintsByDistrict: async (district) => await Http.get(`/get/all/${district}`)
   },
-  put: {},
-  patch: {},
+  put: {
+
+  },
+  patch: {
+    updateStatus : async (complaintId,status) => await Http.patch(`/update/${complaintId}/${status}`),
+    commentComplaint : async () => await Http.patch(`/update/comment`),
+  },
   delete: {},
 };
 

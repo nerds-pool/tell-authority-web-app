@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../../api"
-import ReportBar from "../../components/ReportBar/ReportBar";
 import Complaint from "../../components/complaint/Complaint";
 import { ComplaintData } from "../../FetchData/ComplaintData";
 
@@ -9,7 +8,6 @@ import { Grid } from "@material-ui/core";
 function OpenListPage() {
   return (
     <div>
-      <ReportBar />
       <Grid container direction="row" justify="center" alignItems="center">
         {ComplaintData.map((val, key) => {
           if (val.status === "Accepted") {
