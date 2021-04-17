@@ -60,9 +60,10 @@ const api = {
   },
   put: {},
   patch: {
-    updateStatus: (complaintId, status) =>
-      Http.patch(`/update/${complaintId}/${status}`),
+    updateComplaintStatus: (body) =>
+      Http.patch("/complaints/update/status", body),
     commentComplaint: () => Http.patch(`/update/comment`),
+    resetPassword: (body) => Http.patch("/auth/pro/reset-password", body),
   },
   delete: {},
 };

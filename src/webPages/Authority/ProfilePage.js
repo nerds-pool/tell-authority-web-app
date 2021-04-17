@@ -84,6 +84,27 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
 
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (password !== confirmPassword) {
+        console.log("passwords are not matching");
+        return;
+      }
+      const body = {
+        userId: userState.data.id,
+        password,
+      };
+      const response = await api.patch.resetPassword(body);
+      console.log(response.data.result);
+    } catch (error) {
+      console.log("Error at password update", error.response ?? error.message);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -155,6 +176,8 @@ const Profile = () => {
             label="Password"
             type="password"
             id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -162,8 +185,10 @@ const Profile = () => {
             fullWidth
             name="confirm-password"
             label="Confirm Password"
-            type="confirm-password"
+            type="password"
             id="confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button
             type="submit"
@@ -172,6 +197,7 @@ const Profile = () => {
             color="secondary"
             align="center"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Update
           </Button>

@@ -71,7 +71,7 @@ const Complaint = ({
         reason,
         complaintState,
       };
-      const response = await api.patch.complaintStatusAsDone(body);
+      const response = await api.patch.updateComplaintStatus(body);
       console.dir(response.data.result);
       onUpdate();
     } catch (error) {
@@ -94,7 +94,7 @@ const Complaint = ({
         reason,
         complaintState: "rejected",
       };
-      const response = await api.patch.complaintStatusAsDone(body);
+      const response = await api.patch.updateComplaintStatus(body);
       console.dir(response.data.result);
       onUpdate();
     } catch (error) {
@@ -276,6 +276,9 @@ const Complaint = ({
             >
               View {showLess ? "More" : "Less"}
             </Typography>
+            <Typography className={[classes.caption, classes.complaintIdText]}>
+              {`T-${id.toString().toUpperCase()}`}
+            </Typography>
             <Typography
               className={classes.caption}
             >{`Complainer: ${owner.firstName} ${owner.lastName}`}</Typography>
@@ -344,8 +347,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   caption: {
-    fontSize: "15px",
+    fontSize: "14px",
     fontWeight: "bold",
+  },
+  complaintIdText: {
+    fontSize: "18px",
+    marginBottom: 5
   },
   desc: {
     cursor: "pointer",
