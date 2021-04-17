@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import Complaint from "../../components/complaint/Complaint";
 import { Grid, Container, Typography } from "@material-ui/core";
-import { BubbleChart } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { BubbleChart } from "@material-ui/icons";
 import api from "../../api";
 import { COLOR } from "../../theme/Color";
 import { GlobalContext } from "../../context";
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HomePageAdmin() {
+function OpenListPage() {
   const classes = useStyles();
   const { filterState, userState } = useContext(GlobalContext);
   const [complaints, setComplaints] = useState([]);
@@ -39,12 +39,12 @@ function HomePageAdmin() {
       try {
         setLoading(true);
         const response = await api.get.complaintsByFilter(
-          "open",
+          "accepted",
           filterState.category,
           userState.data.id,
           filterState.date
         );
-        // console.table("All complaints", response.data.result);
+        console.table("All accepted complaints", response.data.result);
         setComplaints(response.data.result);
       } catch (error) {
         console.error("Error at home page", error.message);
@@ -52,7 +52,7 @@ function HomePageAdmin() {
         setLoading(false);
       }
     })();
-  }, [filterState]);
+  }, [filterState, userState]);
 
   if (loading)
     return (
@@ -75,7 +75,7 @@ function HomePageAdmin() {
       >
         {complaints &&
           complaints.map((val) =>
-            val.status === "open" ? (
+            val.status === "accepted" ? (
               <Complaint
                 key={val._id}
                 id={val._id}
@@ -101,4 +101,4 @@ function HomePageAdmin() {
   );
 }
 
-export default HomePageAdmin;
+export default OpenListPage;

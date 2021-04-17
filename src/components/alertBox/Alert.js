@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 // import icons
-import { PriorityHigh, HelpOutline } from "@material-ui/icons";
+import { HelpOutline } from "@material-ui/icons";
 
 // import makeStyles
 import { makeStyles } from "@material-ui/core/styles";
@@ -67,7 +67,7 @@ function Alert(props) {
   const classes = useStyles();
 
   const DisplayAlert = () => {
-    if (AlertType === "Open" && BtnType === "Confirm")
+    if (AlertType === "open" && BtnType === "Confirm")
       return (
         // Click Accept
         <Dialog
@@ -105,7 +105,7 @@ function Alert(props) {
         </Dialog>
       );
 
-    if (AlertType === "Open" && BtnType === "Reject")
+    if (AlertType === "open" && BtnType === "Reject")
       return (
         // Click Accept
         <Dialog
@@ -153,7 +153,7 @@ function Alert(props) {
         </Dialog>
       );
 
-    if (AlertType === "Accepted")
+    if (AlertType === "accepted")
       return (
         <Dialog
           open={props.open}
@@ -190,7 +190,7 @@ function Alert(props) {
         </Dialog>
       );
 
-    if (AlertType === "Processing")
+    if (AlertType === "processing")
       return (
         <Dialog
           open={props.open}

@@ -13,6 +13,7 @@ const useStyle = makeStyles((theme) => ({
   },
   heading: {
     width: "80%",
+    marginBottom: theme.spacing(4),
   },
   links: {
     display: "flex",
@@ -24,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
     textDecoration: "none",
     width: "100%",
     color: "black",
-    margin: "8px",
+    // margin: "8px",
     paddingTop: "10px",
 
     fontWeight: "bold",
@@ -44,19 +45,18 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   list: {
-    marginLeft: "25px",
+    paddingLeft: "20px",
     fontWeight: "normal",
   },
 }));
 
-function SideNav
-  () {
+function SideNav() {
   const classes = useStyle();
   return (
     <div className={classes.container}>
       {/* <Typography className={classes.tabName} variant="h4"> </Typography> */}
       <CardContent className={classes.links}>
-      <div className={classes.heading}>
+        <div className={classes.heading}>
           <InputLabel>
             <h2>
               <Explore />
@@ -64,17 +64,43 @@ function SideNav
             </h2>
           </InputLabel>
         </div>
-        <Typography className={classes.link} component={Link} to="/">Dashboard</Typography>
-        <Typography className={classes.link} style={{ textDecoration: "none" }}>Complaints</Typography>
-        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/openList">Open List</Typography>
-        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/progressList">Progress List</Typography>
-        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/closedList">Closed List</Typography>
-        <Typography className={`${classes.link} ${classes.list}`} component={Link} to="/rejectedList">Rejected List</Typography>
-
+        <Typography className={classes.link} component={Link} to="/">
+          Dashboard
+        </Typography>
+        <Typography className={classes.link} style={{ textDecoration: "none" }}>
+          Complaints
+        </Typography>
+        <Typography
+          className={`${classes.link} ${classes.list}`}
+          component={Link}
+          to="/acceptedList"
+        >
+          Accepted
+        </Typography>
+        <Typography
+          className={`${classes.link} ${classes.list}`}
+          component={Link}
+          to="/ongoingList"
+        >
+          Ongoing
+        </Typography>
+        <Typography
+          className={`${classes.link} ${classes.list}`}
+          component={Link}
+          to="/closedList"
+        >
+          Closed
+        </Typography>
+        <Typography
+          className={`${classes.link} ${classes.list}`}
+          component={Link}
+          to="/rejectedList"
+        >
+          Rejected
+        </Typography>
       </CardContent>
     </div>
   );
 }
 
-export default SideNav
-  ;
+export default SideNav;

@@ -13,7 +13,6 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    // backgroundColor: '#e5e5e5'
   },
   Typography: {
     color: "#e8e8e4",
@@ -22,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "#e8e8e4",
     "&:hover": {
-      textDecoration: 'underline',
-      fontSize: '15px'
+      color: "#ff0000",
     },
   },
 }));
@@ -35,40 +33,24 @@ function Footer() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            component="h4"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h4">
             Contact Us
           </Typography>
         </Grid>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            component="h4"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h4">
             Quick Links
           </Typography>
         </Grid>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            component="h4"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h4">
             Find us On
           </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            component="h4"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h4">
             <CallIcon></CallIcon> &nbsp; +94112654279
           </Typography>
         </Grid>
@@ -78,15 +60,15 @@ function Footer() {
           </Link>
         </Grid>
         <Grid item xs>
-          <Typography className={classes.Typography} variant="outlined">
+          <Typography className={classes.Typography}>
             <FacebookIcon></FacebookIcon>
           </Typography>
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs>
-          <Typography className={classes.Typography} variant="outlined">
-            <EmailIcon></EmailIcon> &nbsp; suchithdevfdo@gmail.com
+          <Typography className={classes.Typography}>
+            <EmailIcon /> &nbsp; admin@tell-lk.com
           </Typography>
         </Grid>
         <Grid item xs>
@@ -95,15 +77,15 @@ function Footer() {
           </Link>
         </Grid>
         <Grid item xs>
-          <Typography className={classes.Typography} variant="outlined">
+          <Typography className={classes.Typography}>
             <LinkedInIcon></LinkedInIcon>
           </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs>
-          <Typography className={classes.Typography}  variant="outlined">
-            <RoomIcon ></RoomIcon> &nbsp; Colombo 11
+          <Typography className={classes.Typography}>
+            <RoomIcon></RoomIcon> &nbsp; Colombo 11
           </Typography>
         </Grid>
         <Grid item xs>
@@ -112,7 +94,7 @@ function Footer() {
           </Link>
         </Grid>
         <Grid item xs>
-          <Typography className={classes.Typography} variant="outlined">
+          <Typography className={classes.Typography}>
             <GitHubIcon></GitHubIcon>
           </Typography>
         </Grid>
@@ -123,24 +105,16 @@ function Footer() {
           <Typography
             className={classes.Typography}
             component="h3"
-            variant="outlined"
           ></Typography>
         </Grid>
 
         <Grid item xs={6}>
-          <Typography
-            className={classes.Typography}
-            component="h3"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h3">
             <i>Sri Lanka's #1 public complaint management system</i>
           </Typography>
         </Grid>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            variant="outlined"
-          ></Typography>
+          <Typography className={classes.Typography}></Typography>
         </Grid>
       </Grid>
 
@@ -149,25 +123,16 @@ function Footer() {
           <Typography
             className={classes.Typography}
             component="h3"
-            variant="outlined"
           ></Typography>
         </Grid>
 
         <Grid item xs={6}>
-          <Typography
-            className={classes.Typography}
-            component="h5"
-            variant="outlined"
-          >
+          <Typography className={classes.Typography} component="h5">
             All Rights reserved - copyright © Tell 2021.
           </Typography>
         </Grid>
         <Grid item xs>
-          <Typography
-            className={classes.Typography}
-            variant="outlined"
-          ></Typography>
-          
+          <Typography className={classes.Typography}></Typography>
         </Grid>
       </Grid>
     </div>

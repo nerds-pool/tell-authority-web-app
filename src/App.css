@@ -4,18 +4,17 @@
 }
 
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   overflow: hidden;
 }
 
 .header {
-  height: 8.5%;
+  height: 50px;
   width: 100%;
 }
 
 .body {
-  height: 91.5%;
   width: 100%;
   display: flex;
   overflow-y: scroll;
@@ -24,41 +23,42 @@
 
 /* components inside body */
 .sideNav {
-  width: 15.1%;
+  width: 15%;
   position: fixed;
   background-color: #edede8;
   height: 100%;
-  /* margin-right: 50%; */
+  padding-left: 20px;
 }
 
 .comnfot {
-  /* position: fixed; */
-  margin-left: 15.2%;
-  width: 65%;
-  /* margin-right: 100.2%; */
+  margin-left: 15%;
+  width: 71%;
+}
+
+.reportBar {
+  padding: 50px 150px 20px 150px;
 }
 
 .mainContent {
-  padding: 20px;
-
-  /* background-color: goldenrod; */
+  padding: 20px 150px;
+  min-height: 100vh;
 }
 
 .filter {
-  width: 20%;
+  width: 15%;
   position: fixed;
-  height: 100vh;
-  left: 79%;
   background-color: #edede8;
+  height: 100%;
+  right: 0;
 }
 
 .footer {
   background-color: #263238;
-  /* background-Color: #e5e5e5; */
-
-  height: 35%;
+  /* height: 50%; */
   width: 100%;
-  padding-top: 20px;
+  margin-top: 80px;
+  padding-top: 40px;
+  padding-bottom: 20px;
   align-items: center;
   text-align: center;
   display: inline-flexbox;
