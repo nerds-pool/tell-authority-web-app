@@ -281,7 +281,7 @@ const Complaint = ({
             </Typography>
             <Typography
               className={classes.caption}
-            >{`Complainer: ${owner.firstName} ${owner.lastName}`}</Typography>
+            >{`Complainer: ${owner.firstName} ${owner.lastName} (${owner.contact})`}</Typography>
             <Typography className={classes.caption}>
               {`Category: ${category.title}`}
             </Typography>
@@ -352,7 +352,7 @@ const useStyles = makeStyles((theme) => ({
   },
   complaintIdText: {
     fontSize: "18px",
-    marginBottom: 5
+    marginBottom: 5,
   },
   desc: {
     cursor: "pointer",
