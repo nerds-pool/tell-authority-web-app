@@ -6,6 +6,7 @@ import { BubbleChart } from "@material-ui/icons";
 import api from "../../api";
 import { COLOR } from "../../theme/Color";
 import { GlobalContext } from "../../context";
+import ErrorSnack from "../../components/alertBox/ErrorSnack";
 
 const useStyles = makeStyles((theme) => ({
   marginTop: {
@@ -34,6 +35,10 @@ function OpenListPage() {
   const { filterState, userState } = useContext(GlobalContext);
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
 
   const handleUpdate = () => {
     setCycle((prevState) => prevState + 1);
@@ -52,7 +57,11 @@ function OpenListPage() {
         console.table("All accepted complaints", response.data.result);
         setComplaints(response.data.result);
       } catch (error) {
-        console.error("Error at home page", error.message);
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: error.response ?? error.message,
+        }));
       } finally {
         setLoading(false);
       }
@@ -102,6 +111,7 @@ function OpenListPage() {
             ) : null
           )}
       </Grid>
+      <ErrorSnack isVisible={error.state} message={error.message} />
     </div>
   );
 }

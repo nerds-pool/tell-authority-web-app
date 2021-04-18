@@ -18,11 +18,16 @@ import ProfilePage from "./webPages/Authority/ProfilePage";
 import { updateCategory, updateDate, resetFilter } from "./context/actions";
 import { GlobalContext } from "./context";
 import api from "./api";
+import ErrorSnack from "./components/alertBox/ErrorSnack";
 
 function App() {
   const { userState, filterState, dispatchFilter } = useContext(GlobalContext);
   const [auth, setAuth] = useState(false);
   const [report, setReport] = useState({});
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
 
   useEffect(() => {
     console.log("filter state in App.js", filterState);
@@ -42,7 +47,13 @@ function App() {
           console.log("Report", response.data.result);
           setReport(response.data.result);
         } catch (error) {
-          console.log("Error while fetching report", error.message);
+          setError((prevState) => ({
+            ...prevState,
+            state: true,
+            message: `Error while fetching report ${
+              error.response ?? error.message
+            }`,
+          }));
         }
       })();
   }, [auth]);
@@ -74,17 +85,19 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {/* nav Bar */}
-        <div className="header">
-          <NavBar />
-        </div>
-        {/* body and it's content */}
-        <div className="body">
-          {/* sidenavbar */}
-          <div className="sideNav">
-            <SideNavBar />
+        {auth && (
+          <div className="header" id="nav-bar">
+            <NavBar />
           </div>
-          {/* body and footer */}
+        )}
+
+        <div className="body">
+          {auth && (
+            <div className="sideNav" id="side-nav">
+              <SideNavBar />
+            </div>
+          )}
+
           <div className="comnfot">
             <div className="reportBar">
               {auth && (
@@ -95,7 +108,7 @@ function App() {
                 />
               )}
             </div>
-            {/* load web page content */}
+
             <div className="mainContent">
               <Switch>
                 <PrivateRoute auth={auth} path="/" exact>
@@ -123,16 +136,21 @@ function App() {
                   <ProfilePage />
                 </PrivateRoute>
               </Switch>
+              <ErrorSnack isVisible={error.state} message={error.message} />
             </div>
-            {/* footer */}
-            <div className="footer">
-              <Footer />
+
+            {auth && (
+              <div className="footer">
+                <Footer />
+              </div>
+            )}
+          </div>
+
+          {auth && (
+            <div className="filter">
+              <Filter onFilter={handleFilter} onReset={handleFilterReset} />
             </div>
-          </div>
-          {/* filter */}
-          <div className="filter">
-            <Filter onFilter={handleFilter} onReset={handleFilterReset} />
-          </div>
+          )}
         </div>
       </div>
     </div>

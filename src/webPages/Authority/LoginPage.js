@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,7 @@ import { GlobalContext } from "../../context";
 import { setUser, setAuth, setTokens } from "../../context/actions";
 import { useHistory } from "react-router-dom";
 import { COLOR } from "../../theme/Color";
+import ErrorSnack from "../../components/alertBox/ErrorSnack";
 
 const FORM_UPDATE = "FORM_UPDATE";
 
@@ -62,10 +63,11 @@ const LoginPage = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const { userState, tokenState, dispatchUser, dispatchToken } = useContext(
-    GlobalContext
-  );
-  const [errorMsg, setErrorMsg] = useState("");
+  const { dispatchUser, dispatchToken } = useContext(GlobalContext);
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
   const [formState, formDispatch] = useReducer(formReducer, {
     inputValues: {
       password: "",
@@ -76,11 +78,6 @@ const LoginPage = () => {
       username: "",
     },
   });
-
-  useEffect(() => {
-    console.log("User from context", userState);
-    console.log("Token State", tokenState);
-  }, [userState, tokenState]);
 
   const handleInput = (e) => {
     formDispatch({
@@ -94,18 +91,19 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMsg("");
     try {
       const signinBody = {
         username: formState.inputValues.username,
         password: formState.inputValues.password,
       };
       const response = await api.post.signin(signinBody);
-      console.log("Authority doc", response.data.result);
 
       if (response.data.result.role !== 49) {
-        setErrorMsg("Please use an authority account to Login");
-        return;
+        return setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: "Please use an authority account to Login",
+        }));
       }
 
       const user = {
@@ -127,13 +125,19 @@ const LoginPage = () => {
       history.push("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrorMsg("Invalid username or password");
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: "Invalid username or password",
+        }));
       }
       if (error.response && error.response.status === 500) {
-        alert(
-          "Oops!",
-          "Something went wrong with our servers :( Try again later..."
-        );
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message:
+            "Something went wrong with our servers :( Try again later...",
+        }));
       }
     }
   };
@@ -147,9 +151,6 @@ const LoginPage = () => {
         </Avatar>
         <Typography component="h1" variant="h5">
           Authority Log In
-        </Typography>
-        <Typography color="error" className={classes.error}>
-          {errorMsg}
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -186,6 +187,7 @@ const LoginPage = () => {
             Log In
           </Button>
         </form>
+        <ErrorSnack isVisible={error.state} message={error.message} />
       </div>
     </Container>
   );
