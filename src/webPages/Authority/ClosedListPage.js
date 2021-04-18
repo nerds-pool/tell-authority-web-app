@@ -54,7 +54,7 @@ function ClosedListPageAdmin() {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: `Error while fetching report ${error.response ?? error.message
+          message: `Error while fetching closed list ${error.response ?? error.message
             }`,
         }));
       } finally {

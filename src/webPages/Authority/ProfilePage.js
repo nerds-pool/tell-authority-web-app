@@ -123,7 +123,7 @@ const Profile = () => {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: `Error while fetching report ${error.response ?? error.message
+          message: `Error @ profile page ${error.response ?? error.message
             }`,
         }));
 
@@ -212,9 +212,9 @@ const Profile = () => {
             Update
           </Button>
           <Grid container></Grid>
-          <ErrorSnack isVisible={error.state} message={error.message} />
         </form>
       </div>
+          <ErrorSnack isVisible={error.state} message={error.message} />
     </Container>
 
   );

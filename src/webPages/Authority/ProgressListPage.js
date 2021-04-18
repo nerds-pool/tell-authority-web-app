@@ -55,7 +55,7 @@ function ProgressListPageAdmin() {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: `Error while fetching report ${error.response ?? error.message
+          message: `Error while fetching progress list ${error.response ?? error.message
             }`,
         }));
       } finally {

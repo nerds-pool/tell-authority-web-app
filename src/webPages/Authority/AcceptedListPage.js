@@ -60,7 +60,7 @@ function OpenListPage() {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: error.response ?? error.message,
+          message:` Error fetching accepted list ${ error.response ?? error.message}`,
         }));
       } finally {
         setLoading(false);

@@ -57,7 +57,7 @@ function HomePageAdmin() {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: `Error while fetching report ${error.response ?? error.message
+          message: `Error @ home page ${error.response ?? error.message
             }`,
         }));
       } finally {
