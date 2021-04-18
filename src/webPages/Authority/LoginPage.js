@@ -187,8 +187,8 @@ const LoginPage = () => {
             Log In
           </Button>
         </form>
-        <ErrorSnack isVisible={error.state} message={error.message} />
       </div>
+      <ErrorSnack isVisible={error.state} message={error.message} />
     </Container>
   );
 };
