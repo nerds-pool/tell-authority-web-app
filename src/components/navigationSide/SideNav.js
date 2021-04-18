@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Typography, CardContent, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Explore } from "@material-ui/icons";
+import { COLOR } from "../../theme/Color";
 
 const useStyle = makeStyles((theme) => ({
   container: {
-    backgroundColor: "#edede8",
+    backgroundColor: COLOR.platinum1,
   },
   heading: {
     width: "80%",
@@ -21,16 +22,16 @@ const useStyle = makeStyles((theme) => ({
   link: {
     textDecoration: "none",
     width: "100%",
-    color: "black",
+    color: COLOR.black,
     paddingTop: "10px",
 
     fontWeight: "bold",
     "&:hover": {
-      textDecoration: "underline 2px solid #8E0D37",
+      textDecoration: `underline 2px solid ${COLOR.claret}`,
       borderRadius: "5px",
     },
     "&:active": {
-      color: "black",
+      color: COLOR.black,
       outline: 0,
       border: "none",
     },

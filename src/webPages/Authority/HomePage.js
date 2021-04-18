@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import api from "../../api";
 import { COLOR } from "../../theme/Color";
 import { GlobalContext } from "../../context";
-
+import ErrorSnack from "../../components/alertBox/ErrorSnack";
 const useStyles = makeStyles((theme) => ({
   marginTop: {
     marginTop: theme.spacing(4),
@@ -34,7 +34,10 @@ function HomePageAdmin() {
   const { filterState, userState } = useContext(GlobalContext);
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
   const handleUpdate = () => {
     setCycle((prevState) => prevState + 1);
   };
@@ -51,7 +54,12 @@ function HomePageAdmin() {
         );
         setComplaints(response.data.result);
       } catch (error) {
-        console.error("Error at home page", error.message);
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: `Error while fetching report ${error.response ?? error.message
+            }`,
+        }));
       } finally {
         setLoading(false);
       }
@@ -91,9 +99,8 @@ function HomePageAdmin() {
                 landmark={val.landmark}
                 media={val.media}
                 comments={val.comments}
-                date={`${new Date(val.createdAt).getDate()}/${
-                  new Date(val.createdAt).getMonth() + 1
-                }/${new Date(val.createdAt).getFullYear()}`}
+                date={`${new Date(val.createdAt).getDate()}/${new Date(val.createdAt).getMonth() + 1
+                  }/${new Date(val.createdAt).getFullYear()}`}
                 authority={val.authority}
                 category={val.category}
                 onUpdate={handleUpdate}
@@ -101,6 +108,8 @@ function HomePageAdmin() {
             ) : null
           )}
       </Grid>
+      <ErrorSnack isVisible={error.state} message={error.message} />
+
     </div>
   );
 }

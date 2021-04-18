@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     width: "90%",
     "&:hover": {
-      backgroundColor: "#b71c1c",
+      backgroundColor: COLOR.carnelian,
     },
   },
   Select: {

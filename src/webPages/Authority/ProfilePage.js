@@ -13,7 +13,7 @@ import { GlobalContext } from "../../context";
 import api from "../../api";
 import { COLOR } from "../../theme/Color";
 import { BubbleChart } from "@material-ui/icons";
-
+import ErrorSnack from "../../components/alertBox/ErrorSnack";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(3),
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "5px",
     borderRadius: "5px",
     marginTop: theme.spacing(1),
-    backgroundColor: "#f2f2f2",
+    backgroundColor: COLOR.cultured,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -50,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
     width: "120px",
     textAlign: "start",
     marginRight: "5px",
-    textDecorationColor: "black",
+    textDecorationColor: COLOR.black,
   },
   fields: {
     paddingTop: "10px",
-    backgroundColor: "#e8e8e4",
+    backgroundColor: COLOR.platinum,
     width: "100%",
     textAlign: "center",
     height: "40px",
@@ -86,6 +86,10 @@ const Profile = () => {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,7 +120,13 @@ const Profile = () => {
         console.dir(response.data.result);
         setProfile((prevState) => ({ ...prevState, ...response.data.result }));
       } catch (error) {
-        console.error(error.response ?? error.message);
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: `Error while fetching report ${error.response ?? error.message
+            }`,
+        }));
+
       } finally {
         setLoading(false);
       }
@@ -202,9 +212,11 @@ const Profile = () => {
             Update
           </Button>
           <Grid container></Grid>
+          <ErrorSnack isVisible={error.state} message={error.message} />
         </form>
       </div>
     </Container>
+
   );
 };
 

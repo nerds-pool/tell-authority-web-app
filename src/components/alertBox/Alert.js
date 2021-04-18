@@ -28,23 +28,23 @@ const useStyles = makeStyles((theme) => ({
   },
   buttons: {
     justifyContent: "center",
-    color: "white",
+    color: COLOR.white,
   },
   confirm: {
     backgroundColor: COLOR.navCol,
-    color: "white",
+    color: COLOR.white,
 
     "&:hover": {
       backgroundColor: COLOR.navCol,
-      color: "white",
+      color: COLOR.white,
     },
   },
   cancel: {
     backgroundColor: COLOR.redColour,
-    color: "white",
+    color: COLOR.white,
     "&:hover": {
       backgroundColor: COLOR.redColour,
-      color: "white",
+      color: COLOR.white,
     },
   },
 }));

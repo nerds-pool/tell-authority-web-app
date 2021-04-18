@@ -6,7 +6,7 @@ import { BubbleChart } from "@material-ui/icons";
 import api from "../../api";
 import { COLOR } from "../../theme/Color";
 import { GlobalContext } from "../../context";
-
+import ErrorSnack from "../../components/alertBox/ErrorSnack";
 const useStyles = makeStyles((theme) => ({
   marginTop: {
     marginTop: theme.spacing(4),
@@ -33,6 +33,10 @@ function ClosedListPageAdmin() {
   const { filterState, userState } = useContext(GlobalContext);
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({
+    state: undefined,
+    message: undefined,
+  });
 
   useEffect(() => {
     (async () => {
@@ -47,7 +51,12 @@ function ClosedListPageAdmin() {
         console.table("All closed complaints", response.data.result);
         setComplaints(response.data.result);
       } catch (error) {
-        console.error("Error at home page", error.message);
+        setError((prevState) => ({
+          ...prevState,
+          state: true,
+          message: `Error while fetching report ${error.response ?? error.message
+            }`,
+        }));
       } finally {
         setLoading(false);
       }
@@ -87,15 +96,15 @@ function ClosedListPageAdmin() {
                 landmark={val.landmark}
                 media={val.media}
                 comments={val.comments}
-                date={`${new Date(val.createdAt).getDate()}/${
-                  new Date(val.createdAt).getMonth() + 1
-                }/${new Date(val.createdAt).getFullYear()}`}
+                date={`${new Date(val.createdAt).getDate()}/${new Date(val.createdAt).getMonth() + 1
+                  }/${new Date(val.createdAt).getFullYear()}`}
                 authority={val.authority}
                 category={val.category}
               />
             ) : null
           )}
       </Grid>
+      <ErrorSnack isVisible={error.state} message={error.message} />
     </div>
   );
 }
