@@ -178,7 +178,7 @@ const Complaint = ({
         error.response ?? error.message
       );
     } finally {
-      handleCloseAlert();
+      handleCloseRejectAlert();
     }
   };
 
