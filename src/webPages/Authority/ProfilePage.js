@@ -95,7 +95,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       if (password !== confirmPassword) {
-        console.log("passwords are not matching");
+        alert("passwords are not matching");
         return;
       }
       const body = {
@@ -103,7 +103,7 @@ const Profile = () => {
         password,
       };
       const response = await api.patch.resetPassword(body);
-      console.log(response.data.result);
+      console.log(response.data.msg);
     } catch (error) {
       console.log("Error at password update", error.response ?? error.message);
     }
@@ -123,10 +123,8 @@ const Profile = () => {
         setError((prevState) => ({
           ...prevState,
           state: true,
-          message: `Error @ profile page ${error.response ?? error.message
-            }`,
+          message: `Error @ profile page ${error.response ?? error.message}`,
         }));
-
       } finally {
         setLoading(false);
       }
@@ -214,9 +212,8 @@ const Profile = () => {
           <Grid container></Grid>
         </form>
       </div>
-          <ErrorSnack isVisible={error.state} message={error.message} />
+      <ErrorSnack isVisible={error.state} message={error.message} />
     </Container>
-
   );
 };
 

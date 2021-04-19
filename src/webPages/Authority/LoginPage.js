@@ -120,8 +120,6 @@ const LoginPage = () => {
 
       localStorage.setItem("signToken", signToken);
       localStorage.setItem("refToken", refToken);
-
-      console.log("About to navigate");
       history.push("/");
     } catch (error) {
       if (error.response && error.response.status === 400) {

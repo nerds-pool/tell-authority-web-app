@@ -134,7 +134,6 @@ const Complaint = ({
   };
 
   const handleConfirm = async (e, reason = "None") => {
-    console.log("Confirmed job", { id, title, reason });
     try {
       let complaintState;
 
@@ -163,7 +162,6 @@ const Complaint = ({
 
   const handleReject = async (e, reason = "Not specified") => {
     if (status !== "open") return;
-    console.log("Rejected job", { id, title, reason });
     try {
       const body = {
         userId: userState.data.id,

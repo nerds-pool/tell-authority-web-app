@@ -30,7 +30,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("filter state in App.js", filterState);
     if (userState.auth === true) {
       setAuth(true);
     } else {
@@ -44,7 +43,6 @@ function App() {
         try {
           const response = await api.get.report();
           if (!response.data.success) throw new Error(response.data.msg);
-          console.log("Report", response.data.result);
           setReport(response.data.result);
         } catch (error) {
           setError((prevState) => ({

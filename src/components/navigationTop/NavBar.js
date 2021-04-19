@@ -39,7 +39,7 @@ const NavBar = () => {
     try {
       await dispatchUser(resetUser());
     } catch (error) {
-      console.log("Error while log out", error.message);
+      console.log("Error while logging out", error.message);
     }
   };
 
