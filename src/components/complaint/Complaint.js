@@ -333,12 +333,7 @@ const Complaint = ({
             <Typography variant="h4" className={classes.heading}>
               {title}{" "}
             </Typography>
-            <img className={classes.media} src={bicyleImg} alt="" />
-            {/* <img
-              className={classes.media}
-              src={`https://tell-lk/.netlify/functions/api/file/${media}`}
-              alt="Complaint"
-            /> */}
+            {/* <img className={classes.media} src={bicyleImg} alt="" /> */}
             <Typography>
               {showLess ? `${content.slice(0, 70)}...` : content}
             </Typography>
